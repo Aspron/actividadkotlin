@@ -1,17 +1,17 @@
 
 fun main() {
 
-    for (i in 1..100) {
+    for (x in 1..100) {
 
         when {
 
-            i % 3 == 0 && i % 5 == 0 -> println("triqui")
+            x % 3 == 0 && x % 5 == 0 -> println("triqui")
 
-            i % 3 == 0 -> println("tri")
+            x % 3 == 0 -> println("tri")
 
-            i % 5 == 0 -> println("qui")
+            x % 5 == 0 -> println("qui")
 
-            else -> println(i)
+            else -> println(x)
 
         }
     }
