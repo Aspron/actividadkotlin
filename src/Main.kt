@@ -1,9 +1,36 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val x
-    Comprobar("{a + b [c] * (2x2)}}}}")
-    }
-fun Comprobar() {
+    val expresiones = listOf(
+        "{a + b [c] * (2x2)}}}}",
+        "{ [ a * ( c + d ) ] - 5 }",
+        "{ a * ( c + d ) ] - 5 }",
+        "{a^4 + (((ax4)}",
+        "{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }",
+        "{{{{{{(}}}}}}",
+        "(a"
+    )
 
+
+    for (expresion in expresiones) {
+        if (estaBalanceada(expresion)) {
+            println("La expresión \"$expresion\" está balanceada.")
+        } else {
+            println("La expresión \"$expresion\" no está balanceada.")
+        }
+    }
+}
+
+fun estaBalanceada(expresion: String): Boolean {
+    var contador = 0
+    for (caracter in expresion) {
+        when (caracter) {
+            '{', '[', '(' -> contador++
+            '}', ']', ')' -> contador--
+        }
+
+        if (contador < 0) {
+            return false
+        }
+    }
+
+    return contador == 0
 }
