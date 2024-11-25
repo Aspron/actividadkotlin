@@ -24,6 +24,7 @@ fun Balance(expresion: String): Boolean {
             '}', ']', ')' -> contador--
         }
 
+
         if (contador < 0) {
             return false
         }
