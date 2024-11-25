@@ -4,7 +4,6 @@ fun main() {
     println("Introduce la segunda palabra:")
     val palabra2 = readLine()?.trim() ?: ""
 
-    // Verificar si son anagramas
     if (sonAnagramas(palabra1, palabra2)) {
         println("Las palabras \"$palabra1\" y \"$palabra2\" son anagramas.")
     } else {
