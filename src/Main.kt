@@ -8,18 +8,15 @@ fun main() {
         "{{{{{{(}}}}}}",
         "(a"
     )
-
-
     for (expresion in expresiones) {
-        if (estaBalanceada(expresion)) {
+        if (Balance(expresion)) {
             println("La expresión \"$expresion\" está balanceada.")
         } else {
             println("La expresión \"$expresion\" no está balanceada.")
         }
     }
 }
-
-fun estaBalanceada(expresion: String): Boolean {
+fun Balance(expresion: String): Boolean {
     var contador = 0
     for (caracter in expresion) {
         when (caracter) {
