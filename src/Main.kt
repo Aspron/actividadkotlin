@@ -1,14 +1,51 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+    val acciones = listOf(
+        listOf("correr", "saltar", "correr", "saltar", "correr") to "_|_|_",
+        listOf("correr", "correr", "correr", "saltar", "correr") to "_|_|_",
+        listOf("correr", "correr", "saltar", "saltar", "correr") to "_|_|_",
+        listOf("correr", "correr", "saltar", "saltar", "correr") to "_|_|_|_",
+        listOf("correr", "saltar", "correr", "saltar") to "_|_|_",
+        listOf("correr", "saltar", "correr", "saltar", "correr", "saltar", "correr") to "_|_|_",
+        listOf("saltar", "saltar", "saltar", "saltar", "saltar") to "|||||",
+        listOf("saltar", "saltar", "saltar", "saltar", "saltar") to "||_||"
+    )
+
+    for ((accionesAtleta, pista) in acciones) {
+        val resultado = evaluarCarrera(accionesAtleta, pista)
+        println("Acciones: $accionesAtleta, Pista inicial: \"$pista\", Resultado: ${resultado.second}, Superada: ${resultado.first}")
     }
+}
+
+fun evaluarCarrera(acciones: List<String>, pista: String): Pair<Boolean, String> {
+
+    if (acciones.size != pista.length) {
+        return false to "La longitud de acciones y pista no coincide"
+    }
+
+    val pistaFinal = StringBuilder(pista)
+    var carreraCorrecta = true
+
+    for (i in acciones.indices) {
+        val accion = acciones[i]
+        val tramo = pista[i]
+
+        when {
+            accion == "correr" && tramo == '_' -> pistaFinal[i] = '_'
+            accion == "saltar" && tramo == '|' -> pistaFinal[i] = '|'
+            accion == "saltar" && tramo == '_' -> {
+                pistaFinal[i] = 'x'
+                carreraCorrecta = false
+            }
+            accion == "correr" && tramo == '|' -> {
+                pistaFinal[i] = '/'
+                carreraCorrecta = false
+            }
+            else -> {
+                pistaFinal[i] = '?'
+                carreraCorrecta = false
+            }
+        }
+    }
+    return carreraCorrecta to pistaFinal.toString()
 }
