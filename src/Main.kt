@@ -20,7 +20,7 @@ fun main() {
 fun evaluarCarrera(acciones: List<String>, pista: String): Pair<Boolean, String> {
 
     if (acciones.size != pista.length) {
-        return false to "La longitud de acciones y pista no coincide"
+        return false to "La longitud de acciones y pista no coinciden"
     }
 
     val pistaFinal = StringBuilder(pista)
